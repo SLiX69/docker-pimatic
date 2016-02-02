@@ -7,7 +7,7 @@ This Dockerfile will create a container based on Debian, installs NodeJS (v0.10.
 
 ## Setup
 
-* Install Docker
+* [Install Docker](https://docs.docker.com/engine/installation/)
 * Clone this repo or just download the Dockerfile
 
 
