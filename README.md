@@ -2,7 +2,7 @@
 
 "*pimatic is a home automation framework that runs on node.js. It provides a common extensible platform for home control and automation tasks.*"
 
-This Dockerfile will create a container based on Debian, installs NodeJS (v0.10.41) and pimatic (v0.8) via NPM
+This Dockerfile will create a container based on Debian, installs NodeJS (v4.5) and pimatic (v0.9) via NPM
 
 
 ## Setup
@@ -23,10 +23,10 @@ This Dockerfile will create a container based on Debian, installs NodeJS (v0.10.
 ### Run 
 * Run with ```docker run -p 80:80 -i -t my_pimatic ```
 * wait till container boot
-* start pimatic with ```pimatic.js start```
+* start pimatic with ```pimatic.js start``` or ```service pimatic start```
 
 Pimatic should now be available via ```Dockerhost:80``` 
 You can change the port by modifying the -p flag (eg ```-p 8080:80``` for ```Dockerhost:8080```)
 
 
-default password is "abcd1234" (Will change this)
+default password is "pimatic"
