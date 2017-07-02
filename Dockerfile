@@ -1,24 +1,7 @@
-############################################################
-# Dockerfile to build Pimatic container images
-# Based on Debian
-############################################################
-
-# Set the base image to Ubuntu
-FROM debian
-
-# File Author / Maintainer
-MAINTAINER SLiX
-
-################## BEGIN INSTALLATION ######################
-# Install NodeJS v4.4.5
-RUN apt-get update
-RUN apt-get install -y curl wget
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash -
-RUN apt-get install -y nodejs
+FROM node:4.7
 
 # Install Pimatic Following the Instructions at Pimatic Docs
 # Ref: https://pimatic.org/guide/getting-started/installation/
-RUN apt-get install -y build-essential git
 RUN mkdir /home/pimatic-app
 RUN /usr/bin/env node --version
 RUN cd /home && npm install pimatic --prefix pimatic-app --production && ls
@@ -32,6 +15,8 @@ RUN chown root:root /etc/init.d/pimatic
 RUN update-rc.d pimatic defaults
 RUN sed -i "s/\"password\": \"\"/\"password\": \"pimatic\"/g" /home/pimatic-app/config.json
 
+# The node Dockerfile sets the entrypoint to "node". We need this to be bash in order to use pimatic.
+ENTRYPOINT ["/bin/bash"]
 
 # Expose port 80
 EXPOSE 80
